@@ -6,6 +6,7 @@ published: "2024-3-1"
 tags: ["sample"]
 ---
 # One hash tag for an H1 affect
+<div class="foo">Test Div</div>
 
 ## This is an H2 (two hash tags)
 

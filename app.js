@@ -31,36 +31,52 @@ app.get("/dynamic-page.html", (req, res) => {
   });
 
   app.post('/contact-me', (req, res) => {
-    res.send("<h1>TODO: Handle contact-me form posts</h1>" + JSON.stringify(req.body));
+
+    // import the contact-helper functions that we need
+    const {isValidContactFormSubmit, sendEmailNotification} = require("./modules/contact-helpers");
+  
+    // Destructure the req.body object into variables
+    const {firstName, lastName, email, comments} = req.body;
+  
+    // Validate the variables
+    if(isValidContactFormSubmit(firstName, lastName, email, comments)){
+      // TODO: Everything is valid, so send an email to YOUR email address with the data entered into the form
+      res.send("TODO: send an email to my email account")
+    }else{
+      res.status(400).send("Invalid request - data is not valid")
+    }
+  
   });
 
-    const {getBlogList, convertMarkdown} = require("./modules/markdown-helpers")
-    const pathToBlogFolder = __dirname + '/blog/';
+   
+  const {getBlogList, convertMarkdown} = require("./modules/markdown-helpers")
+  const pathToBlogFolder = __dirname + '/blog/';
+  const blogList = getBlogList(pathToBlogFolder);
+  
+  app.get('/blog', (req, res)=>{
+    res.render('blog-list', {
+      title: "Blog",
+      posts: blogList
+    });
+  })
 
-    app.get("/blog/:post", (req, res) => {
-        try{
-          const pathToFile = pathToBlogFolder + req.params.post + ".md";
-          console.log("Markdown file: " + pathToFile);
-          const obj = convertMarkdown(pathToFile);
-          res.render('default-layout', {
-             title: obj.data.title,
-             content: obj.html
-          });
-        }catch(e){
-          console.log(e);
-          res.status(404).redirect("/404");
-        }
+  app.get("/blog/:post", (req, res) => {
+    try{
+      const pathToFile = pathToBlogFolder + req.params.post + ".md";
+      console.log("Markdown file: " + pathToFile);
+      const obj = convertMarkdown(pathToFile);
+      res.render('default-layout', {
+         title: obj.data.title,
+         content: obj.html
       });
- 
-    
-    
-app.get("/blog/:post", (req, res) => {
-    res.send("The <b>:post</b> param is set to: " + req.params.post)
-});
+    }catch(e){
+      console.log(e);
+      res.status(404).redirect("/404");
+    }
+  });
 
 
-
-app.get("/404", (req, res) => {
+  app.get("/404", (req, res) => {
     res.status(404);
     res.render('default-layout', {
        title: "Page Not Found",
@@ -68,10 +84,12 @@ app.get("/404", (req, res) => {
     });
   });
 
-
-app.all('*', (req, res) => {
+  app.all('*', (req, res) => {
     res.status(404).redirect("/404");
   });
+
+
+
 
 // START THE SERVER
 const server = app.listen(port, () => {

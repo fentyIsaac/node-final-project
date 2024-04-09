@@ -9,6 +9,17 @@ const bodyParser = require('body-parser');
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production') {
+     if (req.headers['x-forwarded-proto'] !== 'https')
+        // the statement for performing our redirection
+        return res.redirect('https://' + req.headers.host + req.url);
+     else
+        return next();
+  }else{
+     return next();
+  }
+});
 
 // ROUTES
 
@@ -32,7 +43,7 @@ app.get("/dynamic-page.html", (req, res) => {
 
   app.post('/contact-me', (req, res) => {
 
-    // import the contact-helper functions that we need
+    // import the helper functions that we need
     const {isValidContactFormSubmit, sendEmailNotification} = require("./modules/contact-helpers");
   
     // Destructure the req.body object into variables
@@ -40,8 +51,24 @@ app.get("/dynamic-page.html", (req, res) => {
   
     // Validate the variables
     if(isValidContactFormSubmit(firstName, lastName, email, comments)){
-      // TODO: Everything is valid, so send an email to YOUR email address with the data entered into the form
-      res.send("TODO: send an email to my email account")
+      // Everything is valid, so send an email to YOUR email address with the data entered into the form
+      const message = `From: ${firstName} ${lastName}\n
+                      Email: ${email}\n
+                      Message: ${comments}`;
+  
+                      sendEmailNotification(message, (err, info) => {
+                        if(err){
+                          console.log(err);
+                          res.status(500).send("There was an error sending the email");
+                        }else{
+                          // Render a template that confirms the contact form info was recieved:
+                          res.render("default-layout", {
+                            title: "Contact Confirmation",
+                            content: "<h2>Thank you for contacting me!</h2><p>I'll get back to you ASAP.</p>"
+                          })
+                        }
+                      })
+  
     }else{
       res.status(400).send("Invalid request - data is not valid")
     }

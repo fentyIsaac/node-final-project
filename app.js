@@ -56,18 +56,18 @@ app.get("/dynamic-page.html", (req, res) => {
                       Email: ${email}\n
                       Message: ${comments}`;
   
-                      sendEmailNotification(message, (err, info) => {
-                        if(err){
-                          console.log(err);
-                          res.status(500).send("There was an error sending the email");
-                        }else{
-                          // Render a template that confirms the contact form info was recieved:
-                          res.render("default-layout", {
-                            title: "Contact Confirmation",
-                            content: "<h2>Thank you for contacting me!</h2><p>I'll get back to you ASAP.</p>"
-                          })
-                        }
-                      })
+      sendEmailNotification(message, (err, info) => {
+        if(err){
+          console.log(err);
+          res.status(500).send("There was an error sending the email");
+        }else{
+          // Render a template that confirms the contact form info was recieved:
+          res.render("default-layout", {
+            title: "Contact Confirmation",
+            content: "<h2>Thank you for contacting me!</h2><p>I'll get back to you ASAP.</p>"
+          })
+        }
+      })
   
     }else{
       res.status(400).send("Invalid request - data is not valid")

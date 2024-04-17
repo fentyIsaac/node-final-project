@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
+
 // MIDDLEWARE
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -40,6 +41,14 @@ app.get("/dynamic-page.html", (req, res) => {
        title: "Contact Me"
     });
   });
+
+  
+  
+
+  
+
+
+
 
   app.post('/contact-me', (req, res) => {
 
@@ -101,6 +110,7 @@ app.get("/dynamic-page.html", (req, res) => {
       res.status(404).redirect("/404");
     }
   });
+
 
 
   app.get("/404", (req, res) => {

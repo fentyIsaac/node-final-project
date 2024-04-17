@@ -1,0 +1,194 @@
+
+
+
+<!-----This file was just used to clean up my markup. Used it as a carbon copy I could make changes on-->
+
+
+
+
+
+
+
+
+
+
+## What Is Web Acessibilty ?
+    
+    Web accessibitly is websites designed for people with disabilites. Furthermore, it allows the impaired individuals to utilize the website optimally.
+
+    Disabilites most commonly designed for includes:
+
+    - Auditory
+    - Physical
+    - Speech
+    - Visual
+    - Neurological
+---
+## Why Is Web Acessibilty Important?
+
+    As web-programmers, we can utilize a multide of accesiblty options.
+
+    Examples Include: Img(alt text), Keyboard Input, and Transcripts for audio. By utilizing these accessibilty designs we are able to provide the impaired, with a greater quality of life.
+
+
+## What Are Aria Attributes
+
+    Aria attributes are elements, that go way beyond the current uses of native HTML language. This allows us, as designers to create "widgets" or allow specefic states and properties to have the native HTML features. Examples of such attributes you will find below, along with how the aria attribute is useful.
+
+ ---   
+
+# Examples:  
+```html
+
+ <a role=link aria-disabled=true>...</a> 
+
+    What does this code do? In native HTML the language does not allow hyper links to be in a "disabled state". However, when we use an "aria" attribute it allows the link to tell assitive technologies(Web Acessiblity) that it is disabled.
+
+    aria-pressed=true
+
+<button aria-pressed = true>...</button> 
+        
+
+        Why is this useful? The "aria-pressed" attribute essentially tells the code. When the button is pressed allow it to access, acessiblity options thus allowing the implemented techoniges of web-acessibilty to be used.
+
+
+---
+
+
+
+     This is code is extremely important for those who have low vision. By using "aria-label" we allow the element to be accessed to "Text-to-speech". Which in turn immenesly creates a better experience for the low-visoned user. However, you should incoroprate this on about everything that uses the label element, but more spefically the Nav bar. For ease of navagation on the website
+
+
+---
+
+```<i class="navbarIcon" role="img" aria-hidden="true"></i>```
+
+    Descriptve images are a must when it comes to aria attributes. Fundementally, we all should be using some typ of "alt" text to show the image's name even if they can't see it.
+    So let's build off of that theory and delve deeper. We can wrap our images in an <i> tag. In turn allows us to properly give access to anyone that is looking at the image, and they know it is image, but more importantly. It allows screen readers to define it as an image.
+
+---
+
+
+```<header> <a href="#main" class="skip">Skip to main content</a></header><main id="main">```
+
+    So now let's talk about those who have trouble with utilzing keyboard inputs. When we use the "skip" link it allows the user to skip passed anything that isn't the main content. This very helpful as said before for those who have trouble using keyboard inputs, because this allows them to have better ease of access on the website.
+
+
+
+```
+---
+
+### JavaScript Object Prototype's
+
+    JSOP(JavaScript Object Prototype) essenitally is a collection of properties making up an object. In JS every object has a built-in property by default(these are the ones you should not touch.)
+
+    However, when it comes to making your own it can be super powerful in the right hands. To simplify what JSOP is look at it as a math formula. We have parameters that need to be passed in as information, for the prototype to run in different code blocks. How is that possible? Well when we create a prototype it is essentailly the "parent" of objects that are called with it's parameters. 
+
+    The next step to a JSO is to add a method to the prototype. When do you want it run? What do you want it to do? These are all questions you should be thinking about when creating a method for your prototype.
+
+    Lastly, before we move onto the examples. You do not need anything to set this up besides knowloge of how JS works at it's core. If you struggle with JS don't worry examine the code blocks, and slowly pick apart the assembly machine.
+
+---
+
+
+## Examples Of JSOP
+
+
+```js
+// We create our function to be invoked
+function Car(make, model, year) {
+    this.make = make;
+    this.model = model;
+    this.year = year;
+}
+
+// We create our method with the .prototype to tell our code. When this function is called run these lines of code.
+Car.prototype.start = function() {
+    console.log('Starting the ' + this.make + ' ' + this.model);
+};
+
+// We now need to create an instance of the car object
+var car1 = new Car('Rolls', 'Royce', 2024);
+
+// Call the method defined in the prototype
+car1.start(); // We get a output of an Object that has defined properties
+------------------------------------
+
+// We now define a Person prototype
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// We add a method to tell the function what to run, when it is correctly invoked.
+Person.prototype.sayHello = function() {
+    console.log('Hello, my name is ' + this.name + ' and I am ' + this.age + ' years old.');
+};
+
+// We need to create a instance of a person, that inherits from the Person protoype
+var person1 = new Person('Isaac', 20);
+
+
+// Call the method defined in the prototype
+person1.sayHello(); // We get a Object with defined Properties of Isaac and Age: 20
+
+
+
+------------------------------------------
+// We now define a prototype for a Food object
+function Food(name, type) {
+    this.name = name;
+    this.type = type;
+}
+
+// We add a method to tell the code what to do
+Food.prototype.describe = function() {
+    console.log('This is a ' + this.type + ' called ' + this.name);
+};
+
+// We now create instances of objects that use the food prototype
+var food1 = new Food('Pasta', 'dish');
+var food2 = new Food('Orange', 'fruit');
+
+// Call the method defined in the prototype
+food1.describe(); // We get a Object with defined properies such as Pasta(dish)
+food2.describe(); // We get a Object of Properties defined as "Orange(fruit)" and "Pasta(dish)"
+```
+
+
+
+
+## Recap
+    If you have ever taken Java before this should look very simmilar. Everything in this code is quite basic, but I want to draw your attention to the .prototype method for these examples, and the rest following. When the .prototype is added we make a "preset" for every object with the Car properties. So this is where thing's start to get "serious", because we can create powerful prototypes that can handle alot of code for us automatically.
+
+    So let's break all these examples down, as I tried to create ones as simmilar as possible to train your brain to see it piece-by-piece.
+
+    1. We Create a prototype that we want other objects to inherit from this is our "parent", any objects that inherit this prototype is a "child".
+
+    2. Creating a method is arguably the most important, as this tells the code what to do when parameters have been met, and it has been given the "Green Light". So for us in these examples, we just used a simple console.log() and use concation to print what properties we want from the prototype
+
+    3. We need instances of an Object to inherit from the prototype. In our Case we used 2 parameters for every prototype (this will vary depending on what you are trying to do.)
+
+    4. Lastly, we call the function attached to the protoype on our instantied objects this allowing the program to say "Okay I have what I need let me work". Thus, when we call our method on our examples we get our Object and it's DEFINED properties.
+
+    
+    
+    This is what makes JSOP so powerful is we can create one big protoype, and then create methods for it. To be used on a whole heap of objects in the future within our code blocks.
+
+    As said before, JS will have it's own JSOP built in it is not reccomend to tweak these (unless you know what you are doing)
+
+---
+# Links For Aria Attributes
+
+    https://www.w3.org/TR/html-aria/
+    https://openclassrooms.com/en/courses/6663461-code-an-accessible-website-in-html-css/7119811-improve-your-html-with-aria-attributes
+    https://www.w3schools.com/accessibility/accessibility_screen_readers.php
+    https://www.w3.org/WAI/fundamentals/accessibility-intro/
+    https://www.aditus.io/aria/aria-label/
+
+---
+
+# Links For JavaScript Object Prototype's
+    https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes
+    https://www.w3schools.com/js/js_object_prototypes.asp
+    https://w3schools.sinsixx.com/jsref/jsref_prototype_array.asp.htm

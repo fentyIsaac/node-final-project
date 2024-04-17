@@ -40,7 +40,7 @@ function isValidEmailAddress(email){
     const DOMAIN = "levelstotrading.com" // ex: mywebsite.com
     const EMAIL_SERVER = "mail." + DOMAIN;
     const EMAIL_ADDRESS = "_mainaccount@" + DOMAIN;
-    const EMAIL_PASSWORD = "e%c38X6MSG";
+    const EMAIL_PASSWORD = "qDji#^D7Z4^h";
   
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({

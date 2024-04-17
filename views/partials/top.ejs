@@ -2,21 +2,175 @@
 <html lang="en">
 	<head>
 		<title><%= title %></title>
-	  <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1" />
+	  	<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	  	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" href="/prism/prism.css">
+		<script src="/prism/prism.js"></script>
 		<script src="/js/main.js"></script>
 		
+		
+
+		<!-----Make a function when called on the read more button via the cards. It will display the given blog list------>
+		<script>
+			function redirectToBlog(postUrl) {
+            window.location.href = postUrl; // Redirect to the specified blog post URL
+        }
+		</script>
+		
+		<!-------Create the style properties used on the cards/background of the website------------------>
+		<title>My Blogs</title>
+		<style>
+			.card {
+      		max-width: 420px;
+      		border: 4px solid  rgb(250, 161, 58) /* Add border style to all cards */
+    		}
+
+    		.card-body {
+     		 color: rgb(82, 240, 143);
+      		background-color: rgb(0, 0, 0);
+   			 }
+
+			.custom-border {
+			border-color: rgb(0, 0, 0) !important;
+			}
+
+			body{
+				background-color: rgb(233, 236, 236);
+				background-position: center;
+				color: black;
+			}
+
+			h1{
+				padding: 10px;
+				margin: 15px;
+				color: blue;
+			}
+
+
+
+			pre {
+				/* This is selectors used to target the content/markdown file's that will be invoked by the function */
+				font-family: monospace;
+				font-size: 15px;
+
+				
+				background-color: #fdfafa;
+				padding: 10px;
+				margin: 15px;
+
+				
+				border: 5px solid #6e1a1a;
+				border-radius: 5px;
+
+				
+				overflow: auto;
+				white-space: pre-wrap;
+
+			}
+
+			pre code {
+				/* Set font color */
+				color: #000000;
+				font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+			}
+
+			
+			/* Selectors used to target the h3, h4, and h2 headers that will appear, when markdown is formatted. Mainly used to maintain constiencey across the website */
+			h3, h4, h2{
+				padding: 25px;
+				margin: 30px;
+				color: rgb(72, 141, 245);
+				
+			}
+
+
+			/*  Selectors used to target the text formatted. To make the website more vibrant, and easier to read */
+			p {
+				padding: 10px;
+				margin: 15px;
+				font-weight: bold;
+				font-family: Georgia, 'Times New Roman', Times, serif;
+			}
+
+
+
+			
+		</style>
 	</head>
 	<body>
-		<header>
-			<h1>Header</h1>
-		</header>
-		<nav>
-			<ul>
-	        <li><a href="/">Home</a></li>
-	        <li><a href="/blog">Blog</a></li>
-	        <li><a href="/contact-me">Contact</a></li>
-	      </ul>
-		</nav>
-		<div id="content">
-			<main>
+
+		<!-------------------Step: 1 Create Nav bar that utilizes hamburger bar, and reacts correctly with screen size change.------------------------------>
+		<!----Also the idea is to have the user click on whatever project they want to learn about, the homepage is essentially the list of blogs-->
+		
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+			  <a class="navbar-brand" href="#">Isaac Piggott-Fenty Final Project</a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ms-auto">
+				  <li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="/blog">Home</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="/blog/" >Blog</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="/contact-me/">Contact</a>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		  </nav>
+		
+		  <div class="container my-5">
+			<!-- Step: 2 Create cards using the grid format via bootstrap -->
+			<div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+				<div class="col">
+					
+					
+					<!-- First Card to make -->
+					<div class="card h-100">
+						<img src="/images/JS-Logo.png" class="card-img-top" alt="JavaScript Logo">
+						<div class="card-body">
+							<h5 class="card-title">Research Project (JSOP) and Web Accessibilty</h5>
+							<p class="card-text">This is the research project regarding JSOP and aria attributes. Click read more for more info</p>
+							<button class="btn btn-primary read-more-btn" type="button" onclick="redirectToBlog('/blog/Research')">
+								Read More
+							</button>
+						</div>
+						<div class="collapse" id="collapseExample1">
+							<div class="card card-body content-area">
+								<!--Goal is to make blog post's appear in this dev. So I can customize the properties in detail, with selectors.-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					
+					<!-- Second card to make -->
+					<div class="card h-100">
+						<img src="/images/Mouse-three.png" class="card-img-top" alt="Mouse Event Logo">
+						<div class="card-body">
+							<h5 class="card-title">Java Script Events</h5>
+							<p class="card-text">This is the project I researched regarding "Mouse Events." Click read more for more info.</p>
+							<button class="btn btn-primary read-more-btn" type="button" onclick="redirectToBlog('/blog/Mouse-Events-by-Isaac')">
+								Read More
+							</button>
+						</div>
+						<div class="collapse" id="collapseExample3">
+							<div class="card card-body content-area">
+								<!-- Goal is to make blog post's appear in this dev. So I can customize the properties in detail, with selectors. -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	</body>
+</html>
+		
+	

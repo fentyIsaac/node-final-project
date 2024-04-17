@@ -1,25 +1,45 @@
+
+
+
 <%- include('partials/top') %>
-<h1>Contact Me</h1>
-<form method="POST" action="/contact-me">
-    <label>First Name:</label>
-    <br>
-    <input type="text" id="txtFirstName" name="firstName">
-    <br>
 
-    <label>Last Name:</label>
-    <br>
-    <input type="text" id="txtLastName" name="lastName">
-    <br>
+<!----------------I just used a preset on bootstrap for the forms, and added icons to it. Made sure to keep the same varibles----------------------------------------------->
 
-    <label>Email:</label>
-    <br>
-    <input type="text" id="txtEmail" name="email">
-    <br>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center mb-4">Contact Me</h1>
+            <form method="POST" action="/contact-me" class="needs-validation" novalidate>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control" id="txtFirstName" name="firstName" placeholder="First Name" required>
+                    <div class="invalid-feedback">Please enter your first name.</div>
+                </div>
 
-    <label>Comments:</label>
-    <br>
-    <textarea id="txtComments" name="comments"></textarea>
-    <br>
-    <input type="submit" value="SUBMIT">
-</form>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control" id="txtLastName" name="lastName" placeholder="Last Name" required>
+                    <div class="invalid-feedback">Please enter your last name.</div>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    <input type="email" class="form-control" id="txtEmail" name="email" placeholder="Email" required>
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="bi bi-chat-dots"></i></span>
+                    <textarea class="form-control" id="txtComments" name="comments" placeholder="Comments" required></textarea>
+                    <div class="invalid-feedback">Please enter your comments.</div>
+                </div>
+
+                <button class="btn btn-primary d-block mx-auto" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 <%- include('partials/bottom') %>

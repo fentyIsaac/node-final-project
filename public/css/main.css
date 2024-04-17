@@ -1,1 +1,28 @@
-h1{ color: midnightblue; }
+
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Ensure flex items are stacked vertically */
+    justify-content: space-between; /* Push items to the top and bottom */
+    min-height: 100vh; /* Take up the entire viewport height */
+}
+
+main {
+    flex: 1; /* Allow main content to grow and fill remaining space */
+}
+
+.footer {
+        background-color: #343a40; /* Example background color */
+        color: white; /* Example text color */
+        padding: 20px; /* Example padding */
+        position: fixed; /* Fix the footer to the bottom of the viewport */
+        width: 100%; /* Ensure the footer spans the entire width */
+        bottom: 0; /* Position the footer at the bottom of the viewport */
+}
+
